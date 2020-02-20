@@ -1,8 +1,14 @@
 # General
 .DS_Store
 
+# Python
+__pycache__/
+
 # Pycharm
 .idea/
 
 # Models
 models/ssd_inception_v2_coco_2018_01_28/*
+
+# Vitual Environment
+venv/*
