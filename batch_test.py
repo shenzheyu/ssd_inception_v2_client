@@ -30,11 +30,18 @@ def batch_inference(server, img_path):
         batch_size = 2 ** batch_size_index
         print("Batch size = %d: (sec per image)" % batch_size)
         mean = 0
+        first = 0
+        second = 0
         for test_index in range(30):
             time = do_inference(server, batch_size, img_path) / batch_size
             mean += time
             print("    test %d: %f" % (test_index + 1, time))
+            if test_index == 0:
+                first = time
+            elif test_index == 1:
+                second = time
         print("    mean: %f" % (mean / 30))
+        print("    first variance: %f" % ((first - second) * batch_size))
 
 
 def do_inference(server, batch_size, img_path):
