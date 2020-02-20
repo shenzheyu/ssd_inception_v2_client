@@ -52,7 +52,7 @@ def do_inference(server, batch_size, img_path):
     for _ in range(batch_size - 1):
         inputs = np.append(inputs, input, axis=0)
     request.inputs['inputs'].CopyFrom(tf.contrib.util.make_tensor_proto(inputs, shape=inputs.shape))
-    stub.Predict.future(request, 60.25)  # Intial takes time
+    stub.Predict(request, 60)
     end = time.time()
     return end - start
 
