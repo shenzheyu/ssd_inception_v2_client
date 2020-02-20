@@ -168,7 +168,7 @@ def do_inference(server, batch_size, num_tests, img_path):
     IMAGENET_MEAN = (103.939, 116.779, 123.68)
     IMAGENET_MEAN = (0, 0, 0)
     image, org = decode_image_opencv(img_path, max_height=800, swapRB=True,
-                                     imagenet_mean=IMAGENET_MEAN)
+                                     imagenet_mean=IMAGENET_MEAN, log=True)
     # image,org = decode_image_tf_reader(img_path,max_height=800)
     image = image.astype(np.uint8)
     global _draw
@@ -214,7 +214,8 @@ def do_inference(server, batch_size, num_tests, img_path):
 
 def main(_):
     if not FLAGS.img_path:
-        img_path = FLAGS.img_path
+        print('Please specify img_path -img_path=...')
+        return
     if not FLAGS.num_tests:
         print('Please specify num_tests -num_tests=n')
         return
